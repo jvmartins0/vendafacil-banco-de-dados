@@ -1,0 +1,1 @@
+CREATE OR REPLACE VIEW vw_vendas_por_produto AS SELECT p.id AS produto_id,p.nome AS produto,COALESCE(SUM(iv.quantidade),0)::BIGINT AS unidades_vendidas,COALESCE(SUM(iv.quantidade*iv.preco_unitario),0)::NUMERIC(12,2) AS faturamento FROM produtos p LEFT JOIN itens_venda iv ON iv.produto_id=p.id GROUP BY p.id,p.nome;

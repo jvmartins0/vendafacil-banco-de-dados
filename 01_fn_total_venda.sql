@@ -1,0 +1,1 @@
+CREATE OR REPLACE FUNCTION fn_total_venda(p_venda_id BIGINT) RETURNS NUMERIC(12,2) LANGUAGE SQL STABLE AS $$ SELECT COALESCE(SUM(iv.quantidade*iv.preco_unitario),0)::NUMERIC(12,2) FROM itens_venda iv WHERE iv.venda_id=p_venda_id; $$;
